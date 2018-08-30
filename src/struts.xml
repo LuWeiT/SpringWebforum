@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.objectFactory" value="spring"></constant>
+    <constant name="struts.objectFactory.spring.autoWire" value="auto"/>
+    <package name="webforum" namespace="/" extends="struts-default">
+        <action name="login" class="loginAction" method="execute">
+            <result name="false">/index.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="actionName">Content</param>
+                <param name="namespace">/</param>
+            </result>
+            <!-- <result name="success">/index.jsp</result>-->
+        </action>
+        <action name="Content" class="contentAction" method="execute">
+            <result name="success">/content.jsp</result>
+        </action>
+        <action name="Cancel" class="cancelAction" method="execute">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="Register" class="registerAction" method="execute">
+            <result name="success">/index.jsp</result>
+            <result name="false">/register.jsp</result>
+        </action>
+        <action name="ShowDetail" class="showDetailAction" method="execute">
+            <result name="success">/detail.jsp</result>
+        </action>
+        <action name="AddReply" class="addReplyAction" method="execute">
+            <result name="input">/index.jsp</result>
+            <result name="success" type="redirectAction" >
+                <param name="actionName">ShowDetail</param>
+                <param name="namespace">/</param>
+                <param name="id">${#postId}</param>
+                <!--这里要修改 <param name="id">${reply.postId}</param> 不起作用-->
+            </result>
+        </action>
+        <action name="AddPost" class="addPostAction" method="execute">
+            <result name="success" type="redirectAction">
+                <param name="actionName">Content</param>
+                <param name="namespace">/</param>
+            </result>
+        </action>
+        <action name="sendEmail" class="sendEmailAction" method="execute">
+            <result name="success">/forget.jsp</result>
+        </action>
+        <action name="changePassword" class="changePasswordAction" method="execute">
+            <result name="false">/forget.jsp</result>
+            <result name="success">/index.jsp</result>
+        </action>
+    </package>
+</struts>
