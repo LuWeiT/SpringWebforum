@@ -62,9 +62,9 @@ public class EmailService {
         props.put("mail.debug", "true");
         props.put("mail.smtp.starttls.enable", "true");
         // 发件人的账号
-        props.put("mail.user", "769705252@qq.com");
+        props.put("mail.user", "@qq.com");
         // 访问SMTP服务时需要提供的密码
-        props.put("mail.password", "atkuvnpqtfeabcbi");
+        props.put("mail.password", "");
 */
         // 构建授权信息，用于进行SMTP进行身份验证
         Authenticator authenticator = new Authenticator() {
